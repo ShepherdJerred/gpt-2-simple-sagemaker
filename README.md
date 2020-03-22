@@ -1,5 +1,5 @@
 # gpt-2-simple-sagemaker
-Train gpt-2-simple using AWS SageMaker
+This is a wrapper around gpt-2-simple so that it can be easily used with AWS SageMaker. It allows you to upload your input and original GPT-2 models to S3 and use that for training. It is meant to first be uploaded to ECR and then used in a SageMaker training job.
 
 ## Usage
 In SageMaker the following must be defined
