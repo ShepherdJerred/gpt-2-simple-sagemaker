@@ -1,34 +1,26 @@
-from wsgiref.simple_server import make_server
-from pyramid.config import Configurator
-from pyramid.response import Response
-import json
-
+from flask import Flask, request
 from generate import generate_response
+from flask import jsonify
+
+app = Flask(__name__)
 
 
-def handle_ping(request):
-    return Response({})
+@app.route('/')
+def index():
+    return f'SageMaker Inferencing'
 
 
-def handle_invocations(request):
-    model_input = json.loads(request)
+@app.route('/ping')
+def ping():
+    return jsonify('pong')
+
+
+@app.route('/invocations', methods=['POST'])
+def invocations():
+    model_input = request.json['input']
     model_output = generate_response(model_input)
-    return Response({
-        model_input: model_input,
+    print(f'input: {model_input}\n output: {model_output}')
+
+    return jsonify({
         model_output: model_output
     })
-
-
-with Configurator() as config:
-    ping_route = 'ping'
-    config.add_route(ping_route, '/ping')
-    config.add_view(handle_ping, route_name=ping_route, renderer='json')
-
-    invocations_route = 'invocations'
-    config.add_route(invocations_route, '/invocations')
-    config.add_view(handle_invocations, route_name=invocations_route,
-                    renderer='json')
-
-    app = config.make_wsgi_app()
-server = make_server('0.0.0.0', 8080, app)
-server.serve_forever()
