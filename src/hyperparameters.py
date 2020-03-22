@@ -1,9 +1,8 @@
 import json
 from os import path
 
-SAGEMAKER_HYPERPARAMETERS_PATH = '/opt/ml/input/config/hyperparameters.json'
-SAGEMAKER_MODEL_PATH = '/opt/ml/input/data/gpt-2/'
-SAGEMAKER_INPUT_PATH = '/opt/ml/input/data/text/input.txt'
+from sagemaker import SAGEMAKER_HYPERPARAMETERS_PATH, SAGEMAKER_MODEL_PATH, \
+    SAGEMAKER_INPUT_PATH, SAGEMAKER_CHECKPOINT_DIR, SAGEMAKER_SAMPLE_DIR
 
 
 def get_hyperparameters():
@@ -56,7 +55,7 @@ def get_learning_rate():
 
 
 def get_accumulate_gradients():
-    return float(get_hyperparameters()['accumulate_gradients'])
+    return int(get_hyperparameters()['accumulate_gradients'])
 
 
 def get_sample_interval():
@@ -75,5 +74,25 @@ def get_save_interval():
     return int(get_hyperparameters()['save_interval'])
 
 
-def get_print_interval():
+def get_status_print_interval():
+    """
+    Controls how often the status (step number, loss) are printed to the console.
+    :return: The print interval in steps.
+    """
     return int(get_hyperparameters()['print_interval'])
+
+
+def get_checkpoint_directory():
+    """
+    Sets where checkpoints should be saved.
+    :return: The directory that checkpoints should be saved to.
+    """
+    return SAGEMAKER_CHECKPOINT_DIR
+
+
+def get_sample_directory():
+    """
+    Sets where text samples generated during training should be saved.
+    :return: The directory where samples should be saved.
+    """
+    return SAGEMAKER_SAMPLE_DIR
