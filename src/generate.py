@@ -1,7 +1,8 @@
 import gpt_2_simple as gpt2
 import hyperparameters as hp
+import os
 
-model_parameter_version = hp.get_gpt2_parameter_version()
+model_parameter_version = os.getenv('MODEL_PARAMETER_VERSION')
 checkpoint_directory = hp.get_checkpoint_directory()
 sample_directory = hp.get_sample_directory()
 
