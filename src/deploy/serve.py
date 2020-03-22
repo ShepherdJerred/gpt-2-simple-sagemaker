@@ -1,5 +1,5 @@
 from flask import Flask, request
-from generate import generate_response
+from deploy.generate import generate_response
 from flask import jsonify
 
 app = Flask(__name__)

@@ -1,5 +1,5 @@
 import gpt_2_simple as gpt2
-import hyperparameters as hp
+from train import hyperparameters as hp
 
 input_file = hp.get_input_file_path()
 model_dir = hp.get_gpt2_model_path()

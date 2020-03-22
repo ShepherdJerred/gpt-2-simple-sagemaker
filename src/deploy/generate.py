@@ -1,23 +1,21 @@
 import gpt_2_simple as gpt2
-import hyperparameters as hp
 
-checkpoint_directory = hp.get_checkpoint_directory()
-sample_directory = hp.get_sample_directory()
+from sagemaker import SAGEMAKER_MODEL_OUTPUT_PATH, SAGEMAKER_SAMPLE_PATH
 
 
 def generate_response(prompt):
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess=sess,
-                   checkpoint_dir=checkpoint_directory,
+                   checkpoint_dir=SAGEMAKER_MODEL_OUTPUT_PATH,
                    model_name=None,
                    model_dir='models',
                    multi_gpu=False)
 
     result = gpt2.generate(sess=sess,
                            run_name='run1',
-                           checkpoint_dir=checkpoint_directory,
+                           checkpoint_dir=SAGEMAKER_MODEL_OUTPUT_PATH,
                            model_name=None,
-                           sample_dir=sample_directory,
+                           sample_dir=SAGEMAKER_SAMPLE_PATH,
                            return_as_list=True,
                            truncate='<|endoftext|>',
                            destination_path=None,

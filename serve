@@ -1,2 +1,2 @@
 #!/bin/bash
-env FLASK_APP=src/serve.py flask run --host=0.0.0.0 --port=8080
+env FLASK_APP=src/deploy/serve.py flask run --host=0.0.0.0 --port=8080
