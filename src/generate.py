@@ -5,7 +5,7 @@ checkpoint_directory = hp.get_checkpoint_directory()
 sample_directory = hp.get_sample_directory()
 
 
-def generate_response(text):
+def generate_response(prompt):
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess=sess,
                    checkpoint_dir=checkpoint_directory,
@@ -22,14 +22,14 @@ def generate_response(text):
                            truncate='<|endoftext|>',
                            destination_path=None,
                            sample_delim='=' * 20 + '\n',
-                           prefix=f'<|startoftext|>\n{text}',
+                           prefix=f'<|startoftext|>\n{prompt}',
                            seed=None,
                            nsamples=1,
                            batch_size=1,
-                           length=1023,
+                           length=280,
                            temperature=0.7,
                            top_k=0,
                            top_p=0.0,
                            include_prefix=False)
-    print(f'prompt: {text}\nresult: {result[0]}')
+    print(f'prompt: {prompt}\nresult: {result[0]}')
     return result[0]

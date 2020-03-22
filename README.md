@@ -1,20 +1,36 @@
-# gpt-2-simple-sagemaker
-This is a wrapper around gpt-2-simple so that it can be easily used with AWS SageMaker. It allows you to upload your input and original GPT-2 models to S3 and use that for training. It is meant to first be uploaded to ECR and then used in a SageMaker training job.
+# gpt-2-simple-sagemaker-container
+A Docker container for re-training and inferencing using a GPT-2 model with SageMaker.
 
 ## Usage
-In SageMaker the following must be defined
+The following are required to start a Training Job with this model in SageMaker. Note that this Docker image should first be imported to ECR.
 
-### Hyperparameters
-* steps (1000 is a good start)
-* parameter_version (117M, 124M, 345M, 355M, 762M, 774M, 1558M)
+### Hyper-parameters
+All of these hyper parameters must be defined in the training job. The defaults listed below show the defaults of simple-gpt2.
+* steps (int, default -1)
+* is_multi_gpu (bool, default False)
+* batch_size (int, default 1)
+* learning_rate (float, default 0.0001)
+* accumulate_gradients (int, default 5)
+* sample_interval (int, default 100)
+* sample_length (int, default 1023)
+* sample_count (int, default 1)
+* save_interval (int, default 1000)
+* combine_input_size (int, default 50000)
+* restore_from (str, default 'latest')
+* run_name (str, default 'run1')
+* max_checkpoints (int, default 1)
+* should_use_memory_saving_gradients (bool, default False)
+* should_only_train_transform_layers (bool, default False)
+* optimizer (str, default 'adam')
+* should_overwrite (bool, default False)
 
 ### Input
-#### GPT-2 Model
-* Channel name: gpt-2
+#### Model
+* Channel name: model
 * Channel type: S3
+* Description: The model which will be fine tuned.
 
 #### Training Data
 * Channel name: text
 * Channel type: S3
-* File name: input.txt
-
+* Description: Files to train the model from.

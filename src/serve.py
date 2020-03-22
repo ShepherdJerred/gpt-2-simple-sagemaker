@@ -17,10 +17,11 @@ def ping():
 
 @app.route('/invocations', methods=['POST'])
 def invocations():
-    model_input = request.json['input']
-    model_output = generate_response(model_input)
-    print(f'input: {model_input}\n output: {model_output}')
+    prompt = request.json['prompt']
+    response = generate_response(prompt)
+    print(f'prompt: {prompt}\n response: {response}')
 
     return jsonify({
-        model_output: model_output
+        prompt: prompt,
+        response: response
     })
