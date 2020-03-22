@@ -41,3 +41,39 @@ def get_input_file_path():
         return candidate
     else:
         raise Exception(f'Path does not exist: ${candidate}')
+
+
+def get_is_multi_gpu():
+    return get_hyperparameters()['is_multi_gpu']
+
+
+def get_batch_size():
+    return int(get_hyperparameters()['batch_size'])
+
+
+def get_learning_rate():
+    return float(get_hyperparameters()['learning_rate'])
+
+
+def get_accumulate_gradients():
+    return float(get_hyperparameters()['accumulate_gradients'])
+
+
+def get_sample_interval():
+    return int(get_hyperparameters()['sample_interval'])
+
+
+def get_sample_length():
+    return int(get_hyperparameters()['sample_length'])
+
+
+def get_sample_number():
+    return int(get_hyperparameters()['sample_number'])
+
+
+def get_save_interval():
+    return int(get_hyperparameters()['save_interval'])
+
+
+def get_print_interval():
+    return int(get_hyperparameters()['print_interval'])
