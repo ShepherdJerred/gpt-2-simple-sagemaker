@@ -30,5 +30,5 @@ with Configurator() as config:
                     renderer='json')
 
     app = config.make_wsgi_app()
-server = make_server('0.0.0.0', 80, app)
+server = make_server('0.0.0.0', 8080, app)
 server.serve_forever()

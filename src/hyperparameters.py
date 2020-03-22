@@ -2,7 +2,8 @@ import json
 from os import path
 
 from sagemaker import SAGEMAKER_HYPERPARAMETERS_PATH, SAGEMAKER_MODEL_PATH, \
-    SAGEMAKER_INPUT_PATH, SAGEMAKER_CHECKPOINT_DIR, SAGEMAKER_SAMPLE_DIR
+    SAGEMAKER_INPUT_PATH, SAGEMAKER_CHECKPOINT_DIR, SAGEMAKER_SAMPLE_DIR, \
+    SAGEMAKER_OUTPUT_DIR
 
 
 def get_hyperparameters():
@@ -87,7 +88,7 @@ def get_checkpoint_directory():
     Sets where checkpoints should be saved.
     :return: The directory that checkpoints should be saved to.
     """
-    return SAGEMAKER_CHECKPOINT_DIR
+    return SAGEMAKER_OUTPUT_DIR
 
 
 def get_sample_directory():
