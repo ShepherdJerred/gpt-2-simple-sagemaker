@@ -36,4 +36,4 @@ All of these hyper parameters must be defined in the training job. The defaults 
 * Description: Files to train the model from.
 
 ## Deploying
-This container will save a trained model to S3. Once training is complete a SageMaker model, endpoint, and endpoint configuration can be created for inferencing. To make this publicly accessible you'll also need a Lambda function and to setup API Gateway.
+This container will save a trained model to S3. Once training is complete a SageMaker model, endpoint, and endpoint configuration can be created for inferencing. To make this publicly accessible you'll also need a Lambda function and to setup API Gateway, like this one: https://github.com/ShepherdJerred/lambda-sagemaker-endpoint
