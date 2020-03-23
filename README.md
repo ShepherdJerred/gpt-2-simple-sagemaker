@@ -1,7 +1,7 @@
 # gpt-2-simple-sagemaker-container
 A Docker container for re-training and inferencing using a GPT-2 model with SageMaker.
 
-## Usage
+## Training 
 The following are required to start a Training Job with this model in SageMaker. Note that this Docker image should first be imported to ECR.
 
 ### Hyper-parameters
@@ -34,3 +34,6 @@ All of these hyper parameters must be defined in the training job. The defaults 
 * Channel name: text
 * Channel type: S3
 * Description: Files to train the model from.
+
+## Deploying
+This container will save a trained model to S3. Once training is complete a SageMaker model, endpoint, and endpoint configuration can be created for inferencing. To make this publicly accessible you'll also need a Lambda function and to setup API Gateway.

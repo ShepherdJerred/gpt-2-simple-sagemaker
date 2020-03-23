@@ -1,4 +1,7 @@
-FROM tensorflow/tensorflow:1.15.2-py3
+FROM intelaipg/intel-optimized-tensorflow:1.15.2-py3
+
+# Use TensorFlow with AVX and other optimizations
+# RUN pip3 --no-cache-dir install https://github.com/mind/wheels/releases/download/tf1.5-cpu/tensorflow-1.5.0-cp36-cp36m-linux_x86_64.whli
 
 ENV LANG=C.UTF-8
 
